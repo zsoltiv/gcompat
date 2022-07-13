@@ -34,6 +34,7 @@ LIBGCOMPAT_SRC = \
 	libgcompat/syslog.c		\
 	libgcompat/time.c		\
 	libgcompat/ucontext.c		\
+	libgcompat/uio.c		\
 	libgcompat/unistd.c		\
 	libgcompat/utmp.c		\
 	libgcompat/version.c		\
