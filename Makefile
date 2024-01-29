@@ -10,6 +10,7 @@ LIBGCOMPAT_SRC = \
 	libgcompat/gnulib.c		\
 	libgcompat/grp.c		\
 	libgcompat/internal.c		\
+	libgcompat/fcntl.c		\
 	libgcompat/locale.c		\
 	libgcompat/malloc.c		\
 	libgcompat/math.c		\
