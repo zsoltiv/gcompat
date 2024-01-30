@@ -7,10 +7,10 @@ LIBGCOMPAT_SRC = \
 	libgcompat/dlfcn.c		\
 	libgcompat/error.c		\
 	libgcompat/execinfo.c		\
+	libgcompat/fcntl.c		\
 	libgcompat/gnulib.c		\
 	libgcompat/grp.c		\
 	libgcompat/internal.c		\
-	libgcompat/fcntl.c		\
 	libgcompat/locale.c		\
 	libgcompat/malloc.c		\
 	libgcompat/math.c		\
