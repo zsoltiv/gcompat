@@ -4,9 +4,9 @@ int fedisableexcept(int excepts) {
 
 int feenableexcept(int excepts) {
 	if(excepts != 0) {
-        return -1;
-    }
-    return 0;
+		return -1;
+	}
+	return 0;
 }
 
 int fegetexcept(void) {
