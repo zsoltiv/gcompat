@@ -8,6 +8,7 @@ LIBGCOMPAT_SRC = \
 	libgcompat/error.c		\
 	libgcompat/execinfo.c		\
 	libgcompat/fcntl.c		\
+	libgcompat/fenv.c		\
 	libgcompat/gnulib.c		\
 	libgcompat/grp.c		\
 	libgcompat/internal.c		\
