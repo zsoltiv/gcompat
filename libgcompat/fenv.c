@@ -3,7 +3,10 @@ int fedisableexcept(int excepts) {
 }
 
 int feenableexcept(int excepts) {
-	return 0;
+	if(excepts != 0) {
+        return -1;
+    }
+    return 0;
 }
 
 int fegetexcept(void) {
