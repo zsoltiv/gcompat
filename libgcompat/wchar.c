@@ -109,8 +109,8 @@ long int __wcstol_internal(const wchar_t *nptr, wchar_t **endptr, int base,
  *
  * Some day, when musl supports LC_NUMERIC, we can probably remove this.
  */
-unsigned long int wcstoul_l(const wchar_t *nptr, wchar_t **endptr,
-                            int base, locale_t loc)
+unsigned long int wcstoul_l(const wchar_t *nptr, wchar_t **endptr, int base,
+                            locale_t loc)
 {
 	return wcstoul(nptr, endptr, base);
 }
@@ -120,8 +120,7 @@ unsigned long int wcstoul_l(const wchar_t *nptr, wchar_t **endptr,
  *
  * Some day, when musl supports LC_NUMERIC, we can probably remove this.
  */
-long int wcstol_l(const wchar_t *nptr, wchar_t **endptr, int base,
-                  locale_t loc)
+long int wcstol_l(const wchar_t *nptr, wchar_t **endptr, int base, locale_t loc)
 {
 	return wcstol(nptr, endptr, base);
 }
@@ -136,7 +135,33 @@ double wcstod_l(const wchar_t *nptr, wchar_t **endptr, locale_t loc)
 	return wcstod(nptr, endptr);
 }
 
+size_t __mbrlen(const char *restrict s, size_t n, mbstate_t *restrict st)
+{
+	return mbrlen(s, n, st);
+}
 
-size_t __mbrlen(const char *restrict s, size_t n, mbstate_t *restrict st) {
-    return mbrlen(s, n, st);
+wchar_t *__wcsncpy_chk(wchar_t *dest, const wchar_t *src, size_t n,
+                       size_t destlen)
+{
+	assert(dest != NULL);
+	assert(src != NULL);
+
+	assert(destlen >= n);
+
+	return wcsncpy(dest, src, n);
+}
+
+wchar_t *__wcscat_chk(wchar_t *dest, const wchar_t *src, size_t n)
+{
+	wchar_t *a = dest;
+	size_t destlen = wcslen(dest);
+	assert(destlen + wcslen(src) + 1 <= n);
+
+	dest += destlen;
+	while (n && *src) {
+		n--;
+		*dest++ = *src++;
+	}
+	*dest++ = 0;
+	return a;
 }
