@@ -97,10 +97,17 @@ int pthread_mutexattr_setkind_np(pthread_mutexattr_t *attr, int kind)
 	return pthread_mutexattr_settype(attr, kind);
 }
 
+// abuse musl internals to implement this
+#define _c_clock __u.__i[4]
+
 int pthread_cond_clockwait(pthread_cond_t *restrict cond,
                            pthread_mutex_t *restrict mutex,
                            clockid_t clock_id,
                            const struct timespec *restrict abstime)
 {
-    return pthread_cond_timedwait(cond, mutex, abstime);
+    int old_cid = cond->_c_clock;
+    cond->_c_clock = clock_id;
+    int res = pthread_cond_timedwait(cond, mutex, abstime);
+    cond->_c_clock = old_cid;
+    return res;
 }
